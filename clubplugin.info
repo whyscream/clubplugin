@@ -1,0 +1,6 @@
+name = Clubplugin
+description = Integration module for Onsweb clubplugin.
+core = 7.x
+
+dependencies[] = libraries (>=2.1)
+configure = admin/config/content/clubplugin

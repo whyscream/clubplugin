@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall routines for clubplugin module.
+ */
+
+
+/**
+ * Implements hook_uninstall().
+ */
+function clubplugin_uninstall(){
+	variable_del('clubplugin_scriptcode');
+}
