@@ -2,7 +2,21 @@
 /**
  * @file
  * A block module that displays the Onsweb Clubplugin competition data.
+ * @license GPLv2 See LICENSE for details
  */
+
+
+// Common settings that probably shouldn't be hidden in the code
+
+// Informational website
+define('CLUBPLUGIN_VENDOR_URI', 'http://www.onswebbond.nl/voor-verenigingen/');
+
+// Download location of the files you need to host yourself (in libraries)
+define('CLUBPLUGIN_DOWNLOAD_URI', 'http://www.onswebbond.nl/userfiles/plugin.zip');
+
+// Path to the jquery plugin, hosted by onsweb or its partners,
+//   %s gets replaced with the scriptcode
+define('CLUBPLUGIN_PLUGIN_URI', 'http://www.knkv.nl/kcp/%s/');
 
 
 /**
@@ -55,9 +69,6 @@ function clubplugin_block_view($delta = '') {
  * Generate block content for clubplugin.
  */
 function _clubplugin_block_content() {
-	// settings
-	$clubplugin_location_template = 'http://www.knkv.nl/kcp/%s/';
-
 	// Check if we have a scriptcode, otherwise there is no data to show.
 	$scriptcode = variable_get('clubplugin_scriptcode', '');
 	if (empty($scriptcode)) {
@@ -71,7 +82,7 @@ function _clubplugin_block_content() {
 	}
 
 	// Add offsite js library
-	$clubplugin_location = sprintf($clubplugin_location_template, $scriptcode);
+	$clubplugin_location = sprintf(CLUBPLUGIN_PLUGIN_URI, $scriptcode);
 	drupal_add_js(sprintf($clubplugin_location, $scriptcode), 'external');
 
 	// Add plugin init script
@@ -98,8 +109,8 @@ function clubplugin_libraries_info() {
 	$libraries = array();
 	$libraries['clubplugin'] = array(
 		'name' => 'Onsweb Clubplugin',
-		'vendor url' => 'http://www.onswebbond.nl/voor-verenigingen/',
-		'download url' => 'http://www.onswebbond.nl/userfiles/plugin.zip',
+		'vendor url' => CLUBPLUGIN_VENDOR_URI,
+		'download url' => CLUBPLUGIN_DOWNLOAD_URI,
 		'version callback' => '_clubplugin_libraries_version_callback',
 		'files' => array(
 			'css' => array(
@@ -131,7 +142,7 @@ function clubplugin_menu() {
 	$items = array();
 	$items['admin/config/content/clubplugin'] = array(
 		'title' => 'Clubplugin',
-		'description' => 'Change settings for the competition data.',
+		'description' => 'Change settings for the Clubplugin.',
 		'access arguments' => array('administer clubplugin'),
 		'type' => MENU_NORMAL_ITEM,
 		'page callback' => 'drupal_get_form',
@@ -149,13 +160,43 @@ function clubplugin_menu() {
  * @see clubplugin_menu()
  */
 function clubplugin_form($form, &$form_state) {
+	// Add scriptcode entry field
 	$form['clubplugin_scriptcode'] = array(
 		'#type' => 'textfield',
 		'#title' => t('Script code'),
-		'#description' => t('The script code as received after registration. It contains between 22 and 32 alphanumeric characters.'),
+		'#description' => sprintf(t('The script code as received after registration. It contains between 22 and 32 alphanumeric characters. If you don\'t have a script code, contact <a href="%s">Onsweb Support desk</a> for help.'), CLUBPLUGIN_VENDOR_URI),
 		'#default_value' => variable_get('clubplugin_scriptcode'),
 		'#maxlength' => 32,
 		//'#required' => TRUE,
+	);
+
+	// Find out if library is available
+	$library = libraries_detect('clubplugin');
+	if(!empty($library['installed'])) {
+		// show success
+		$library_available = theme_image(
+			array(
+				'path' => 'misc/message-16-ok.png',
+				'attributes' => array()
+			)
+		);
+		$library_available .= ' '. t('The <em>Onsweb Clubplugin</em> library is installed.');
+	} else {
+		// show error message from libraries api
+		$library_available = theme_image(
+			array(
+				'path' => 'misc/message-16-error.png',
+				'attributes' => array()
+			)
+		);
+		$library_available .= ' '. $library['error message'];
+	}
+
+	$form['clubplugin_library_available'] = array(
+		'#type' => 'item',
+		'#title' => t('Library available?'),
+		'#markup' => $library_available,
+		'#description' => sprintf(t('If the library files aren\'t installed, you need to <a href="%s">download them</a> and place the .css files in the sites/all/libraries/clubplugin directory'), CLUBPLUGIN_DOWNLOAD_URI),
 	);
 
 	return system_settings_form($form);
