@@ -114,7 +114,7 @@ function clubplugin_libraries_info() {
 		'version' => '0.5',
 		'files' => array(
 			'css' => array(
-				'clubplugin-layout.css' => array('group' => CSS_DEFAULT),
+				'clubplugin-style.css' => array('group' => CSS_DEFAULT),
 				'clubplugin-grey.css' => array('group' => CSS_DEFAULT),
 			),
 		),
