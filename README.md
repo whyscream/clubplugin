@@ -3,18 +3,23 @@ Clubplugin
 
 A Drupal integration module for the Onsweb Clubplugin.
 
-For various Dutch sports clubs, Onsweb has developed a plugin (in jQuery) that
-clubs can use to integrate data about clubs, competitions, standings, recently
-played and upcoming games on their website. This module provides an easy to 
-add this plugin to a [Drupal](http://www.drupal.org) website.
+For various Dutch sports clubs, Onsweb has developed a plugin that clubs can
+use to integrate data about clubs, competitions, standings, recently
+played and upcoming games on their website. This module provides an easy way 
+to add this jQuery plugin to a [Drupal](http://www.drupal.org) website.
 
 
 Usage
 =====
 
-To use the plugin, you need to sign up for the plugin through the [Onsweb
-website](http://www.onswebbond.nl/voor-verenigingen/). After signing up, you'll
-receive an e-mail with a download link, and a script code.
+To use the plugin, you need to sign up for the jQuery plugin through the 
+[Onsweb website](http://www.onswebbond.nl/voor-verenigingen/). After signing
+up, you'll receive an e-mail with a **download link**, and a **script code**.
+
+Note that a subscription is **not free** and requires a yearly fee to be paid
+to Onsweb. The fee allows you to use the data provided through the jQuery
+plugin on your website. Usage of this Drupal plugin, that only allows for easy
+integration of the jQuery plugin above, **is free**.
 
 
 Install
@@ -48,15 +53,17 @@ The plugin needs the following Drupal modules in order to work properly:
 
 Bugs, issues, questions
 =======================
+
 For checking known bugs, reporting new bugs and feature requests, and asking
 other questions, feel free to file an issue on the github repository for this 
 plugin: https://github.com/whyscream/clubplugin/issues .
 
 Copyright
 =========
+
 This plugin is written by [Tom Hendrikx](http://www.tomhendrikx.nl) and 
-originally developed for the [KV Keizer Karel
-website](http://kvkeizerkarel.nl/). Copyright belongs to Tom Hendrikx, and
+originally developed for the [KV Keizer Karel website]
+(http://kvkeizerkarel.nl/). Copyright belongs to Tom Hendrikx, and
 licensed under the BSD 3-clause license. See the LICENSE file for details.
 
 All code provided by Onsweb that is downloaded separately from this plugin,
