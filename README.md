@@ -27,8 +27,8 @@ Install
 
 To install, follow the steps below.
 
-1. Follow the **download link**, unpack and place the downloaded files in the 
-   `libraries/clubplugin` directory on your Drupal install.
+1. Follow the **download link** from the e-mail, unpack and place the
+   downloaded files in the `libraries/clubplugin` directory on your Drupal site.
 2. Install this module and its dependencies.
 3. Enable the modules.
 4. Use **Settings->jQuery Update** to change the jQuery version to 1.7.
@@ -48,7 +48,8 @@ The plugin needs the following Drupal modules in order to work properly:
 - **Libraries API (2.x)**: this module integrates the files from the download
   link into the plugin.
 - **jQuery Update**: this module allows you to change the used jQuery version
-  within Drupal: 1.7 is needed.
+  within Drupal: the jQuery version in Drupal 7 (v1.4) is too old to make all
+  features in the Onsweb plugin work.
 
 
 Bugs, issues, questions
