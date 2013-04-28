@@ -1,3 +1,8 @@
+#
+# @copyright 2013 Tom Hendrikx
+# @license BSD-3 See LICENSE for details
+#
+
 name = Clubplugin
 description = Integration module for Onsweb clubplugin.
 core = 7.x

@@ -3,6 +3,8 @@
 /**
  * @file
  * Install and uninstall routines for clubplugin module.
+ * @copyright 2013 Tom Hendrikx
+ * @license BSD-3 See LICENSE for details
  */
 
 
