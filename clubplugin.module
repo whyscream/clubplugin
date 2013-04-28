@@ -75,7 +75,7 @@ function _clubplugin_block_content() {
 		return t('Clubplugin error: no valid script code configured in the administration interface');
 	}
 
-	// Check if the library files are available
+	// Check if the library (.css) files are available
 	$library = libraries_load('clubplugin');
 	if (empty($library['loaded'])) {
 		return t('Clubplugin error: library files could not be loaded') .' (' . $library['error'] .')';
@@ -88,7 +88,6 @@ function _clubplugin_block_content() {
 	// Add plugin init script
 	drupal_add_js("jQuery(document).ready(function($){ clubplugin.load('#club-plugin'); });", array(
 		'type' => 'inline',
-		//'scope' => 'footer',
 		'group' => JS_DEFAULT,
 	));
 
@@ -103,7 +102,7 @@ function _clubplugin_block_content() {
 /**
  * Implements hook_libraries_info().
  *
- * Registers CSS files at libraries/clubplugin for this module.
+ * Registers CSS files in libraries/clubplugin for this module.
  */
 function clubplugin_libraries_info() {
 	$libraries = array();
@@ -111,24 +110,15 @@ function clubplugin_libraries_info() {
 		'name' => 'Onsweb Clubplugin',
 		'vendor url' => CLUBPLUGIN_VENDOR_URI,
 		'download url' => CLUBPLUGIN_DOWNLOAD_URI,
-		'version callback' => '_clubplugin_libraries_version_callback',
+		'version' => '0.5',
 		'files' => array(
 			'css' => array(
-				'style.css',
-				'grey.css',
+				'clubplugin-layout.css' => array('group' => CSS_DEFAULT),
+				'clubplugin-grey.css' => array('group' => CSS_DEFAULT),
 			),
 		),
 	);
 	return $libraries;
-}
-
-
-/**
- * Implements version callback for Libraries API
- */
-function _clubplugin_libraries_version_callback($library) {
-	// no version information is available in the sources, but PDF doc says:
-	return '0.5';
 }
 
 
@@ -167,28 +157,17 @@ function clubplugin_form($form, &$form_state) {
 		'#description' => sprintf(t('The script code as received after registration. It contains between 22 and 32 alphanumeric characters. If you don\'t have a script code, contact <a href="%s">Onsweb Support desk</a> for help.'), CLUBPLUGIN_VENDOR_URI),
 		'#default_value' => variable_get('clubplugin_scriptcode'),
 		'#maxlength' => 32,
-		//'#required' => TRUE,
 	);
 
 	// Find out if library is available
 	$library = libraries_detect('clubplugin');
 	if(!empty($library['installed'])) {
 		// show success
-		$library_available = theme_image(
-			array(
-				'path' => 'misc/message-16-ok.png',
-				'attributes' => array()
-			)
-		);
+		$library_available = theme_image(array('path' => 'misc/message-16-ok.png', 'attributes' => array()));
 		$library_available .= ' '. t('The <em>Onsweb Clubplugin</em> library is installed.');
 	} else {
 		// show error message from libraries api
-		$library_available = theme_image(
-			array(
-				'path' => 'misc/message-16-error.png',
-				'attributes' => array()
-			)
-		);
+		$library_available = theme_image(array('path' => 'misc/message-16-error.png', 'attributes' => array()));
 		$library_available .= ' '. $library['error message'];
 	}
 
