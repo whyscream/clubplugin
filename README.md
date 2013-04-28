@@ -27,7 +27,7 @@ Install
 
 To install, follow the steps below.
 
-1. Follow the download link, and place the downloaded files in the 
+1. Follow the **download link**, unpack and place the downloaded files in the 
    `libraries/clubplugin` directory on your Drupal install.
 2. Install this module and its dependencies.
 3. Enable the modules.
