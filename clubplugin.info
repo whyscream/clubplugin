@@ -1,8 +1,7 @@
-#
-# @copyright 2013 Tom Hendrikx
-# @license BSD-3 See LICENSE for details
-#
-
+;
+; @copyright 2013 Tom Hendrikx
+; @license BSD-3 See LICENSE for details
+;
 name = Clubplugin
 description = Integration module for Onsweb clubplugin.
 core = 7.x
@@ -10,3 +9,4 @@ core = 7.x
 dependencies[] = libraries (>=2.x)
 dependencies[] = jquery_update
 configure = admin/config/content/clubplugin
+
