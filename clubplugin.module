@@ -7,16 +7,19 @@
  */
 
 
-// Common settings that probably shouldn't be hidden in the code
-
-// Informational website
+/**
+ * Informational website
+ */
 define('CLUBPLUGIN_VENDOR_URI', 'http://www.onswebbond.nl/voor-verenigingen/');
 
-// Download location of the files you need to host yourself (in libraries)
+/**
+ * Download location of the files you need to host yourself (in libraries)
+ */
 define('CLUBPLUGIN_DOWNLOAD_URI', 'http://www.onswebbond.nl/userfiles/plugin.zip');
 
-// Path to the jquery plugin, hosted by onsweb or its partners,
-//   %s gets replaced with the scriptcode
+/**
+ * Path to the jquery plugin, hosted by onsweb or its partners, the %s placeholder gets replaced with the scriptcode
+ */
 define('CLUBPLUGIN_PLUGIN_URI', 'http://www.knkv.nl/kcp/%s/');
 
 
@@ -93,10 +96,10 @@ function _clubplugin_block_content() {
 	));
 
 	// Return placeholder div as content
-	$content = '<div id="club-plugin"><noscript>';
-	$content .= t('Clubplugin error: you need to enable javascript in your browser to see the Clubplugin competition data.');
-	$content .= '</noscript></div>';
-	return $content;
+	$output  = '<div id="club-plugin"><noscript>';
+	$output .= t('Clubplugin error: you need to enable javascript in your browser to see the Clubplugin competition data.');
+	$output .= '</noscript></div>';
+	return $output;
 }
 
 
