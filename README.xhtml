@@ -1,0 +1,48 @@
+<h1>Clubplugin</h1>
+<p>A Drupal integration module for the Onsweb Clubplugin.</p>
+<p>For various Dutch sports clubs, Onsweb has developed a plugin that clubs can
+use to integrate data about clubs, competitions, standings, recently
+played and upcoming games on their website. This module provides an easy way 
+to add this jQuery plugin to a <a href="http://www.drupal.org">Drupal</a> website.</p>
+<h1>Usage</h1>
+<p>To use the plugin, you need to sign up for the jQuery plugin through the 
+<a href="http://www.onswebbond.nl/voor-verenigingen/">Onsweb website</a>. After signing
+up, you'll receive an e-mail with a <strong>download link</strong>, and a <strong>script code</strong>.</p>
+<p>Note that a subscription is <strong>not free</strong> and requires a yearly fee to be paid
+to Onsweb. The fee allows you to use the data provided through the jQuery
+plugin on your website. Usage of this Drupal plugin, that only allows for easy
+integration of the jQuery plugin above, <strong>is free</strong>.</p>
+<h1>Install</h1>
+<p>To install, follow the steps below.</p>
+<ol>
+<li>Follow the <strong>download link</strong> from the e-mail, unpack and place the
+   downloaded files in the <code>libraries/clubplugin</code> directory on your Drupal site.</li>
+<li>Install this module and its dependencies.</li>
+<li>Enable the modules.</li>
+<li>Use <strong>Settings-&gt;jQuery Update</strong> to change the jQuery version to 1.7.</li>
+<li>Enter the <strong>script code</strong> you received by e-mail in <strong>Settings-&gt;Clubplugin</strong>.</li>
+<li>This page will also indicate whether you placed the downloaded files 
+   (from step 1) at the correct location. </li>
+<li>Use <strong>Structure-&gt;Blocks</strong> to place the 'Clubplugin' block on one or more 
+   nodes of your website.</li>
+<li>Optionally, adapt the look of the plugin data with some css. See the
+   Onsweb documentation provided in the download for details.</li>
+</ol>
+<h1>Dependencies</h1>
+<p>The plugin needs the following Drupal modules in order to work properly:
+- <strong>Libraries API (2.x)</strong>: this module integrates the files from the download
+  link into the plugin.
+- <strong>jQuery Update</strong>: this module allows you to change the used jQuery version
+  within Drupal: the jQuery version in Drupal 7 (v1.4) is too old to make all
+  features in the Onsweb plugin work.</p>
+<h1>Bugs, issues, questions</h1>
+<p>For checking known bugs, reporting new bugs and feature requests, and asking
+other questions, feel free to file an issue on the github repository for this 
+plugin: https://github.com/whyscream/clubplugin/issues .</p>
+<h1>Copyright</h1>
+<p>This plugin is written by <a href="http://www.tomhendrikx.nl">Tom Hendrikx</a> and 
+originally developed for the [KV Keizer Karel website]
+(http://kvkeizerkarel.nl/). Copyright belongs to Tom Hendrikx, and
+licensed under the BSD 3-clause license. See the LICENSE file for details.</p>
+<p>All code provided by Onsweb that is downloaded separately from this plugin,
+is owned by Onsweb, and copyright belongs to them.</p>
