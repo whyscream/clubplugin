@@ -84,7 +84,7 @@ function _clubplugin_block_content() {
 	// Check if we have a scriptcode, otherwise there is no data to show.
 	$scriptcode = variable_get('clubplugin_scriptcode', '');
 	if (empty($scriptcode)) {
-		return t('Clubplugin error: no valid script code configured in the administration interface');
+		return t('Clubplugin error: no valid script code configured in the administration interface.');
 	}
 
 	// Check if the library (.css) files are available
@@ -93,7 +93,7 @@ function _clubplugin_block_content() {
 		return t('Clubplugin error: library files could not be loaded') .' (' . $library['error'] .')';
 	}
 
-	// Add alert error catcher as heredoc
+	// Add inline code as heredoc
 	$offsite_load_error =  t('Clubplugin error: javascript plugin generated a warning:');
 	$inline_snippet = <<<SNIPPET
 
