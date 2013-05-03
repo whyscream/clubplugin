@@ -93,15 +93,45 @@ function _clubplugin_block_content() {
 		return t('Clubplugin error: library files could not be loaded') .' (' . $library['error'] .')';
 	}
 
+	// Add alert error catcher as heredoc
+	$offsite_load_error =  t('Clubplugin error: javascript plugin generated a warning:');
+	$inline_snippet = <<<SNIPPET
+
+// Create backup of default alert method
+alert_default = window.alert;
+// Create a stack for storing caught alerts
+alert_stack = new Array();
+// Replace default alert with anonymous stack worker
+window.alert = function(s) {
+	if (s.toLowerCase().indexOf('onsweb') >= 0) {
+		alert_stack.push(s);
+	} else {
+		alert_default(s);
+	}
+}
+jQuery(document).ready(function() {
+	// Handle the error(s)
+	if (alert_stack.length > 0) {
+		jQuery('#club-plugin').append('<p>${offsite_load_error}</p>');
+		for (var i=0; i < alert_stack.length; i++) {
+			jQuery('#club-plugin').append('<p>'+ alert_stack[i].substr(0, alert_stack[i].length -40) +'...</p>');
+		}
+	}
+	// Restore default alert behaviour
+	window.alert = alert_default;
+
+	// Init clubplugin
+	if (typeof clubplugin !== 'undefined') {
+		clubplugin.load('#club-plugin');
+	}
+});
+
+SNIPPET;
+	drupal_add_js($inline_snippet, array('type' => 'inline', 'weight' => 1));
+
 	// Add offsite js library
 	$clubplugin_location = sprintf(CLUBPLUGIN_PLUGIN_URI, $scriptcode);
-	drupal_add_js(sprintf($clubplugin_location, $scriptcode), 'external');
-
-	// Add plugin init script
-	drupal_add_js("jQuery(document).ready(function($){ clubplugin.load('#club-plugin'); });", array(
-		'type' => 'inline',
-		'group' => JS_DEFAULT,
-	));
+	drupal_add_js(sprintf($clubplugin_location, $scriptcode), array('type' => 'external', 'weight' => 2));
 
 	// Return placeholder div as content
 	$output  = '<div id="club-plugin"><noscript>';
@@ -175,11 +205,11 @@ function clubplugin_form($form, &$form_state) {
 	$library = libraries_detect('clubplugin');
 	if(!empty($library['installed'])) {
 		// show success
-		$library_available = theme_image(array('path' => 'misc/message-16-ok.png', 'attributes' => array()));
+		$library_available  = theme_image(array('path' => 'misc/message-16-ok.png', 'attributes' => array()));
 		$library_available .= ' '. t('The <em>Onsweb Clubplugin</em> library is installed.');
 	} else {
 		// show error message from libraries api
-		$library_available = theme_image(array('path' => 'misc/message-16-error.png', 'attributes' => array()));
+		$library_available  = theme_image(array('path' => 'misc/message-16-error.png', 'attributes' => array()));
 		$library_available .= ' '. $library['error message'];
 	}
 
