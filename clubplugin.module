@@ -54,7 +54,7 @@ function clubplugin_help($path, $arg) {
 function clubplugin_block_info() {
 	$blocks['clubplugin'] = array(
 		'info' => t('Clubplugin'),
-		'cache' => DRUPAL_CACHE_GLOBAL,
+		'cache' => DRUPAL_NO_CACHE,
 	);
 	return $blocks;
 }
