@@ -155,8 +155,8 @@ function clubplugin_libraries_info() {
 		'version' => '0.5',
 		'files' => array(
 			'css' => array(
-				'clubplugin-style.css' => array('group' => CSS_DEFAULT),
-				'clubplugin-grey.css' => array('group' => CSS_DEFAULT),
+				'style.css' => array('group' => CSS_DEFAULT, 'basename' => 'clubplugin-style.css'),
+				'grey.css' => array('group' => CSS_DEFAULT, 'basename' => 'clubplugin-grey.css'),
 			),
 		),
 	);
