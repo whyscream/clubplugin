@@ -20,7 +20,7 @@ define('CLUBPLUGIN_DOWNLOAD_URI', 'http://www.onswebbond.nl/userfiles/plugin.zip
 /**
  * Path to the jquery plugin, hosted by onsweb or its partners, the %s placeholder gets replaced with the scriptcode
  */
-define('CLUBPLUGIN_PLUGIN_URI', 'http://www.knkv.nl/kcp/%s/');
+define('CLUBPLUGIN_PLUGIN_URI', '//mijn.knkv.nl/kcp/%s/');
 
 
 /**
